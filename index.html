@@ -11,13 +11,17 @@
     <h1>MP3 Metadata Editor</h1>
   </header>
   <main>
+
     <section class="file-input-section">
-      <label for="fileInput" class="file-input-label">
+      <label for="fileInput" class="file-input-label" style="margin: 20px">
         <i class="fas fa-upload"></i>
         <span>Choose MP3 File</span>
       </label>
+      <label class="file-input-label" onclick="saveMetadata()" style="margin: 20px">
+        <i class="fas fa-download"></i>
+        <span>Save Metadata</span>
+      </label>
       <input type="file" id="fileInput" accept="audio/mpeg" class="file-input" onchange="readMetadata()">
-      <button class="btn" onclick="saveMetadata()">Save Metadata</button>
     </section>
     <section id="metadataDisplay"></section>
     <section class="edit-metadata-section">
