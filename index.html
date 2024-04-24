@@ -65,7 +65,11 @@
         document.getElementById('title').value = metadata.title
         document.getElementById('artist').value = metadata.artist
         document.getElementById('album').value = metadata.album
-        document.getElementById('lyrics').value = metadata.TXXX.data.data;
+        try {
+          document.getElementById('lyrics').value = metadata.TXXX.data.data;
+        }catch (e) {
+          
+        }
 
         if (metadata.picture) {
           const picture = metadata.picture;
