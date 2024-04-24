@@ -68,7 +68,7 @@
         try {
           document.getElementById('lyrics').value = metadata.TXXX.data.data;
         }catch (e) {
-          
+          document.getElementById('lyrics').value = "";
         }
 
         if (metadata.picture) {
@@ -137,9 +137,26 @@
     mp3tag.tags.title = title;
     mp3tag.tags.artist = artist;
     mp3tag.tags.album = album;
-    mp3tag.tags.v2.TXXX[0].text = data;
+    if (!mp3tag.tags.v2.TXXX){
+      mp3tag.tags.v2.TXXX = [{
+        description: "lyrics",
+        text: data}];
+    }else{
+      mp3tag.tags.v2.TXXX[0].text = data;
+    }
     if (albumArt) {
-      mp3tag.tags.v2.APIC[0].data = albumArt.data;
+      if (!mp3tag.tags.v2.APIC){
+        mp3tag.tags.v2.APIC = [
+          {
+            "format": "image/jpeg",
+            "type": 3,
+            "description": "Cover of Remember the Name (feat. Styles of Beyond) by Fort Minor,Styles Of Beyond",
+            "data": albumArt.data
+          }
+        ];
+      }else {
+        mp3tag.tags.v2.APIC[0].data = albumArt.data;
+      }
     }
     mp3tag.save();
 
